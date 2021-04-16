@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import EventForm from "./EventForm";
 
 
-function Events({ team }){
+function Events({ selectedTeam }){
     const [events, setEvents] = useState([])
 
     useEffect( () => {
@@ -12,7 +12,7 @@ function Events({ team }){
     }, [])
 
     const filterEventsList = events.filter(event=> {
-        return event.teamsId === team.id
+        return event.teamsId === selectedTeam.id
     })
 
     const eventsList = filterEventsList.map( event => {
@@ -31,10 +31,25 @@ function Events({ team }){
     })
     console.log("Events")
 
+    function handleFormSubmit(newFormSubmit) { 
+        fetch("http://localhost:4000/upcomingEvents", {
+            method: "POST",
+            headers: {"content-type" : "application/json"}, 
+            body: JSON.stringify(newFormSubmit)
+        })
+                .then(res => res.json())
+                .then(function(newFormUpload){
+                    setEvents([...events, newFormUpload])
+                })
+    }
+
 
     return ( 
         <div>
-        <EventForm/>
+        <EventForm
+            selectedTeam= {selectedTeam}
+            handleFormSubmit= {handleFormSubmit}
+        />
         { eventsList}
         </div>
     )

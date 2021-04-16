@@ -1,6 +1,6 @@
 import React from "react"
-function TeamInfo({ team }){
-    const { name, logo, yearFounded, lastFiveGameScores } = team
+function TeamInfo({ selectedTeam }){
+    const { name, logo, yearFounded, lastFiveGameScores } = selectedTeam
 
     const lastFiveGameInfo = lastFiveGameScores.map((gameScore, index)=> {
         return (

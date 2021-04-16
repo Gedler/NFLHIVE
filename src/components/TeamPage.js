@@ -3,18 +3,18 @@ import ChatBox from "./Chatbox";
 import Events from "./Events";
 import TeamInfo from "./TeamInfo";
 
-function TeamPage({ team }) {
+function TeamPage({ selectedTeam }) {
     //console.log(team)
 
-    const { id, sportsDbId, name, division, logo, yearFounded, lastFiveGameScores} = team
+    const { id, sportsDbId, name, division, logo, yearFounded, lastFiveGameScores} = selectedTeam
 
     
 
 
     return (
         <div>
-        <TeamInfo team={ team }/>
-        <Events team={ team }/> 
+        <TeamInfo selectedTeam={ selectedTeam }/>
+        <Events selectedTeam={ selectedTeam }/> 
         <ChatBox/>
         </div>
     )
