@@ -23,7 +23,7 @@ function App() {
     <div className="App">
       <TitleBanner/>
       <TeamList teams={ teams } onSelectedTeam={ handleSelectedTeam }/>
-      { selectedTeam ? <TeamPage team={ selectedTeam }/> : null }
+      { selectedTeam ? <TeamPage selectedTeam={ selectedTeam }/> : null }
     </div>
   );
 }
