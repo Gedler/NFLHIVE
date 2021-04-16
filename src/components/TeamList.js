@@ -1,7 +1,18 @@
-function TeamList() {
-    console.log("TeamList")
+import React from "react"
+import TeamPage from "./TeamPage"
 
-    return null;
+function TeamList({ teams, onSelectedTeam }) {
+    console.log("TeamList")
+    const teamLinks = teams.map(team => {
+        return (
+            <li onClick={ ()=> onSelectedTeam(team) } key={ team.id }>{team.name}</li>
+        )
+    })
+    return (
+        <ul>
+            { teamLinks }
+        </ul>
+    )
 
 
 
