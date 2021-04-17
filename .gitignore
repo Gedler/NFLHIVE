@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# independent testing
+/Users/iaconom821/Development/code/Mod2/NFLHIVEFrontend
