@@ -4,19 +4,14 @@ import Events from "./Events";
 import TeamInfo from "./TeamInfo";
 
 function TeamPage({ selectedTeam }) {
-    //console.log(team)
-
-    const { id, sportsDbId, name, division, logo, yearFounded, lastFiveGameScores} = selectedTeam
-
-    
 
 
     return (
-        <div>
-        <TeamInfo selectedTeam={ selectedTeam }/>
-        <Events selectedTeam={ selectedTeam }/> 
-        <ChatBox/>
-        </div>
+            <div>
+            <TeamInfo selectedTeam={ selectedTeam }/>
+            <Events selectedTeam={ selectedTeam }/> 
+            <ChatBox/>
+            </div>
     )
 
 
