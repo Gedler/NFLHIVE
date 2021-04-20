@@ -1,6 +1,6 @@
 import React from "react"
 import TeamPage from "./TeamPage"
-import { NavLink } from "react-router-dom"
+import {Link} from "react-router-dom"
 
 
 
@@ -11,16 +11,18 @@ function TeamList({ teams, onSelectedTeam }) {
     const teamLinks = teams.map(team => {
 
         return (
-                   
-            <li onClick={ ()=> onSelectedTeam(team) } key={ team.id }>{team.name}</li>
+
+            <div key= {team.id}>
+                   <Link to={`/${team.id}`} key={ team.id }>{team.name}</Link>
+            </div> // returns that component into an A tag. Does this by default.
            
 
         )
     })
     return (
-        <ul>
+        <div>
             { teamLinks }
-        </ul>
+        </div>
     )
 
 
