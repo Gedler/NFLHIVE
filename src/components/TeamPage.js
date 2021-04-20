@@ -5,6 +5,7 @@ import TeamInfo from "./TeamInfo";
 import {useParams} from "react-router-dom";
 
 
+
 function TeamPage() {
     //console.log(team)
 

@@ -3,6 +3,7 @@ import TeamPage from "./TeamPage"
 import {Link} from "react-router-dom"
 
 
+
 function TeamList({ teams, onSelectedTeam }) {
   
 

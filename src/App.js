@@ -5,6 +5,7 @@ import TeamList from './components/TeamList';
 import TeamPage from './components/TeamPage';
 import {Route, Switch} from "react-router-dom"
 
+
 function App() {
   const [teams, setTeams] = useState([]) 
   const [selectedTeam, setSelectedTeam] = useState(null)

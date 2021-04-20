@@ -1,27 +1,36 @@
 import React, { useState, useEffect } from 'react'
 import EventForm from "./EventForm";
+import CommentsList from './CommentsList'
 
 
 function Events({ selectedTeam }){
     const [events, setEvents] = useState([])
+    console.log(events)
 
-
-function deleteEventPost(e) {
-    fetch(`http://localhost:4000/upcomingEvents/${e.target.name}`, {
-        method: "delete", })
-        let filteredDelete = events.filter(event => {
-            // console.log(e.target.name)
-           
-            return e.target.name !== event.id
-
+    function onCommentSubmit(updatedEvent) {
+        console.log(updatedEvent)
+        const filterEvents = events.map(event => {
+            if(event.id === updatedEvent.id){
+                event = updatedEvent
+            }
+            return event
         })
-        setEvents(filteredDelete)
-         console.log(e.target.name)
-        
+        console.log(filterEvents)
+        setEvents(filterEvents)
+    }
 
-    
-    
-}
+    function deleteEventPost(e) {
+        let filteredDelete = events.filter(event => {
+
+            return parseInt(e.target.name) !== event.id
+        })
+
+        fetch(`http://localhost:4000/upcomingEvents/${e.target.name}`, {
+            method: "delete", })
+
+        setEvents(filteredDelete)
+    }
+
     useEffect( () => {
         fetch(`http://localhost:4000/upcomingEvents`)
         .then(res => res.json())
@@ -36,18 +45,18 @@ function deleteEventPost(e) {
         return (
             <div key={ event.id }>
                 <span> 
-                    <p>{event.title}</p>   
-                    <p>{event.date}</p>
-                    <p>{event.time}</p>
-                    <p>{event.opponent}</p>
-                    <p>{event.location}</p>
-                    <p>{event.comments}</p>
-                    <button name= {event.id} onClick= {deleteEventPost}>Delete</button>
+                    <p>Title: {event.title}</p>
+                    <p>Date: {event.date}</p>
+                    <p>Time: {event.time}</p>
+                    <p>Description: {event.opponent}</p>
+                    <p>Location: {event.location}</p>
+                    <p>Comments: {event.comments}</p>
+                    <button name={event.id} onClick={deleteEventPost}>Delete</button>
                 </span>
+                <CommentsList id={event.id} eventDetails={ event } onCommentSubmit={ onCommentSubmit }/>
             </div>
         )
     })
-    console.log("Events")
 
     function handleFormSubmit(newFormSubmit) { 
         fetch("http://localhost:4000/upcomingEvents", {
@@ -68,7 +77,7 @@ function deleteEventPost(e) {
             selectedTeam= {selectedTeam}
             handleFormSubmit= {handleFormSubmit}
         />
-        { eventsList}
+        { eventsList }
         </div>
     )
 
