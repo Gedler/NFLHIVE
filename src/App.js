@@ -3,10 +3,10 @@ import React, { useState, useEffect } from "react"
 import TitleBanner from './components/TitleBanner';
 import TeamList from './components/TeamList';
 import TeamPage from './components/TeamPage';
-
+import {Route, Switch} from "react-router-dom"
 
 function App() {
-  const [teams, setTeams] = useState([])
+  const [teams, setTeams] = useState([]) 
   const [selectedTeam, setSelectedTeam] = useState(null)
 
     useEffect(() => {
@@ -19,11 +19,18 @@ function App() {
     setSelectedTeam(team)
   }
 
+//make a new URL path that shows the components that are children on it (line 27)
+//// dynamically makes new URL paths that show components children (line 31)
   return (
     <div className="App">
       <TitleBanner/>
-      <TeamList teams={ teams } onSelectedTeam={ handleSelectedTeam }/>
-      { selectedTeam ? <TeamPage selectedTeam={ selectedTeam }/> : null }
+      <TeamList teams = {teams} />
+     <Switch>
+        <Route exact path="/:id"> 
+             <TeamPage/> 
+        </Route>
+   
+      </Switch>
     </div>
   );
 }
