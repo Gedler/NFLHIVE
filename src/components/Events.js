@@ -1,23 +1,28 @@
 import React, { useState, useEffect } from 'react'
 import EventForm from "./EventForm";
-import CommentsList from './CommentsList'
+import styled from 'styled-components'
+import ChatBox from './Chatbox'
+
+const EventsBox = styled.div`
+    display: inline-flex;`
+
+const EventsList = styled.p`
+    margin: 2px;
+    color: blue;`
+
+const EventElement = styled.div`
+        margin: 4px;
+        background: dodgerblue;
+        border: 2px solid black;
+        border-radius: 4px;
+        color: white;
+        text-align: left;
+        `
 
 
 function Events({ selectedTeam }){
     const [events, setEvents] = useState([])
     console.log(events)
-
-    function onCommentSubmit(updatedEvent) {
-        console.log(updatedEvent)
-        const filterEvents = events.map(event => {
-            if(event.id === updatedEvent.id){
-                event = updatedEvent
-            }
-            return event
-        })
-        console.log(filterEvents)
-        setEvents(filterEvents)
-    }
 
     function deleteEventPost(e) {
         let filteredDelete = events.filter(event => {
@@ -43,18 +48,17 @@ function Events({ selectedTeam }){
 
     const eventsList = filterEventsList.map( event => {  // return the teams that match the teamsAPI for ALL TEAMS.
         return (
-            <div key={ event.id }>
+            <EventElement key={ event.id }>
                 <span> 
-                    <p>Title: {event.title}</p>
-                    <p>Date: {event.date}</p>
-                    <p>Time: {event.time}</p>
-                    <p>Description: {event.opponent}</p>
-                    <p>Location: {event.location}</p>
-                    <p>Comments: {event.comments}</p>
-                    <button name={event.id} onClick={deleteEventPost}>Delete</button>
+                    <EventsList>Title: {event.title}</EventsList>
+                    <EventsList>Date: {event.date}</EventsList>
+                    <EventsList>Time: {event.time}</EventsList>
+                    <EventsList>Description: {event.opponent}</EventsList>
+                    <EventsList>Location: {event.location}</EventsList>
+                    <EventsList>Comments: {event.comments}</EventsList>
+                    <EventsList as="button" name={event.id} onClick={deleteEventPost}>Delete</EventsList>
                 </span>
-                <CommentsList id={event.id} eventDetails={ event } onCommentSubmit={ onCommentSubmit }/>
-            </div>
+            </EventElement>
         )
     })
 
@@ -72,13 +76,22 @@ function Events({ selectedTeam }){
 
 
     return ( 
+        <EventsBox>
+            <div>
+                <EventForm
+                    selectedTeam= {selectedTeam}
+                    handleFormSubmit= {handleFormSubmit}
+                />
+                <h2>Fan Chat</h2>
+                <ChatBox
+                        id = {selectedTeam.id}
+                        />
+            </div>
         <div>
-        <EventForm
-            selectedTeam= {selectedTeam}
-            handleFormSubmit= {handleFormSubmit}
-        />
-        { eventsList }
+            <h4 style={{textAlign:'center'}}>Upcoming Events</h4>
+            { eventsList }
         </div>
+        </EventsBox>
     )
 
 }
