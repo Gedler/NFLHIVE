@@ -1,13 +1,20 @@
 import React, {useState, useEffect} from "react"
-import ChatBox from "./Chatbox";
 import Events from "./Events";
 import TeamInfo from "./TeamInfo";
 import {useParams} from "react-router-dom";
+import styled from "styled-components";
 
+const MainContent = styled.div`
+        display: inline-flex;
+        background-color: rgba(255, 67, 88);
+        margin-bottom: 2%;
+        margin-right: 2%;
+        `
 
 
 function TeamPage() {
     //console.log(team)
+
 
     const [team, setTeam] = useState(null)
     const [isloaded, setIsLoaded] = useState(false)
@@ -32,13 +39,15 @@ function TeamPage() {
 
 
     return (
-        <div>
-        <TeamInfo selectedTeam={ team }/>
-        <Events selectedTeam={ team }/> 
-        <ChatBox
-            id = {id}
-        />
-        </div>
+        <>
+        <MainContent>
+            <TeamInfo selectedTeam={ team }/>
+            <div>
+                <Events selectedTeam={ team }/> 
+            </div>
+        </MainContent>
+        
+        </>
     )
 
 

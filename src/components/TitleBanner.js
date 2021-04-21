@@ -1,9 +1,22 @@
+import styled from "styled-components";
+
+
+const TitleHeader = styled.div`
+        text-align: center;
+        color: red;
+        background-color: rgba(0, 0, 255, 70%);
+        margin: auto;
+        padding: 10px;
+        `
+
 function TitleBanner() {
+    
+
     console.log("Hello, World!")
         return ( 
-            <div>
-                <h1>NFLHIVE</h1>
-            </div>
+            <TitleHeader>
+                <h1 style={{margin: 0}}>NFLHIVE</h1>
+            </TitleHeader>
         )
 }
 
