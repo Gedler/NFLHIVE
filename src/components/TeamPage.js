@@ -9,6 +9,8 @@ const MainContent = styled.div`
         background-color: rgba(255, 67, 88);
         margin-bottom: 2%;
         margin-right: 2%;
+        width: auto;
+        box-sizing: border-box;
         `
 
 
@@ -22,32 +24,27 @@ function TeamPage() {
 
     useEffect(()=> {
             fetch(`http://localhost:4000/teams/${id}`) 
-                .then(res => res.json())
-                .then(function(selectedTeam){
-                        setTeam(selectedTeam)
-                        setIsLoaded(true)
-
-                })
-
+            .then(res => res.json())
+            .then(function(selectedTeam){
+                setTeam(selectedTeam)
+                setIsLoaded(true)
+            })
     }, [id])
 
     if (isloaded === false) {
+
         return ( 
             <h2>loading...</h2> 
         )
     }
 
-
     return (
-        <>
         <MainContent>
             <TeamInfo selectedTeam={ team }/>
-            <div>
+            <div style={{flexGrow: 1}}>
                 <Events selectedTeam={ team }/> 
             </div>
         </MainContent>
-        
-        </>
     )
 
 

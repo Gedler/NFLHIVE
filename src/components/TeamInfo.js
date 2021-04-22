@@ -3,7 +3,8 @@ import styled from "styled-components";
 
 const TeamWrapper = styled.div`
     color: blue;
-    width: 45%;
+    width: 37.7%;
+    text-align: center;
     `
 
 const TeamElement = styled.div`
@@ -16,6 +17,10 @@ const TeamElement = styled.div`
         text-align: left;
         `
 
+const Video = styled.iframe`
+    display: block;`
+
+
 function TeamInfo({ selectedTeam }){
 
     const { name, logo, yearFounded, lastFiveGameScores } = selectedTeam
@@ -27,7 +32,7 @@ function TeamInfo({ selectedTeam }){
                     <p>{gameScore.opponent}</p>
                     <p>Home Score: {gameScore.homeScore}</p>
                     <p>Away Score: {gameScore.awayScore}</p>
-                    <iframe src={gameScore.highlight.replace('watch?v=', "embed/")} title={index}></iframe>
+                    <Video src={gameScore.highlight.replace('watch?v=', "embed/")} title={index}></Video>
                 </span>
             </TeamElement>
         )
@@ -35,9 +40,9 @@ function TeamInfo({ selectedTeam }){
 
     return (
         <TeamWrapper>
-            <h3 style={{textAlign: 'center'}}>{ name }</h3>
+            <h3>{ name }</h3>
             <img style={ {width: '100%', objectFit: 'contain'} } src={ logo } alt="team-logo"></img>
-            <h4 style={{textAlign: 'center'}}>{ yearFounded }</h4>
+            <h4>Year Founded: { yearFounded }</h4>
             <h5>Last 5 Games</h5>
             <div>
                 { lastFiveGameInfo }
