@@ -1,19 +1,27 @@
 import React from "react"
 import styled from "styled-components";
+import { Embed } from 'semantic-ui-react'
+
+const Title = styled.h1`
+    font-family: fantasy ;
+    font-style: Copperplate ;
+    font-size: 40px;
+    font-weight: bold;`
 
 const TeamWrapper = styled.div`
-    color: blue;
+    color: black;
     width: 37.7%;
     text-align: center;
     `
 
 const TeamElement = styled.div`
         margin: 4px;
-        background: dodgerblue;
+        background: whitesmoke;
+        font-weight: bold;
         padding: 6px;
         border: 2px solid black;
         border-radius: 4px;
-        color: white;
+        color: teal;
         text-align: left;
         `
 
@@ -28,22 +36,27 @@ function TeamInfo({ selectedTeam }){
     const lastFiveGameInfo = lastFiveGameScores.map((gameScore, index)=> {
         return (
             <TeamElement key={ index }>
-                <span>
+               
                     <p>{gameScore.opponent}</p>
                     <p>Home Score: {gameScore.homeScore}</p>
                     <p>Away Score: {gameScore.awayScore}</p>
-                    <Video src={gameScore.highlight.replace('watch?v=', "embed/")} title={index}></Video>
-                </span>
+                    <iframe title={index} src={gameScore.highlight.replace('watch?v=', "embed/")}/>
+                               
+                             
+                             
+
+                    {/* // src={gameScore.highlight.replace('watch?v=', "embed/")}></Embed> */}
+              
             </TeamElement>
         )
     })
 
     return (
         <TeamWrapper>
-            <h3>{ name }</h3>
+            <Title>{ name }</Title>
             <img style={ {width: '100%', objectFit: 'contain'} } src={ logo } alt="team-logo"></img>
-            <h4>Year Founded: { yearFounded }</h4>
-            <h5>Last 5 Games</h5>
+            <Title>Year Founded: { yearFounded }</Title>
+            <Title>Last 5 Games</Title>
             <div>
                 { lastFiveGameInfo }
             </div>

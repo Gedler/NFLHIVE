@@ -1,13 +1,29 @@
 import React, {useState, useEffect} from "react"
 import styled from 'styled-components'
+import { Button, Comment, Form, Header } from 'semantic-ui-react'
 
 const Div = styled.div`
     margin-top: 6px;
     display: block;`
 
-const Form = styled.form`
-    display: block;
-    `
+// const Form = styled.form`
+//     display: block; 
+//     `
+const Chatbox = styled.input` 
+display: block;
+   width: 100%;
+   box-sizing: border-box;
+   background-color: ${props => props.bgcolor || "teal"};
+   color: white;
+   border-radius: 4px;
+   margin: 2px;
+   padding: 2px;` 
+
+const ChatListDiv = styled.div` 
+    height: 300px;
+    overflow: auto;`
+   
+
 
 function ChatBox({id}){
     
@@ -46,21 +62,24 @@ function ChatBox({id}){
 
     const chatList = chat.map(function(comments){
         return ( 
-            <div key= {comments.id}>
-                <span>
-                    <p>{comments.comment}</p>
-                </span>
-            </div>
+
+            <Comment key= {comments.id}>
+                <Comment.Content>
+                    <Comment.Text>{comments.comment}</Comment.Text>
+                </Comment.Content>
+            </Comment>
         )
     })
     return ( 
-        <Div>
-            {chatList}
-            <form onSubmit= {sendNewChat}>
-                <Form as='textarea' placeholder="Start Chatting" value={userInput} onChange= {e=>setuserInput(e.target.value)}/>
-                <input as='input' type="submit"/>
-            </form>
-        </Div>
+        <Comment.Group>
+        
+            {chatList}s
+        
+            <Form reply onSubmit= {sendNewChat}>
+                <Form.TextArea as='textarea' placeholder="Join Chat" value={userInput} onChange= {e=>setuserInput(e.target.value)}/>
+                <Button content="add chat"/>
+            </Form>
+        </Comment.Group>
     )
 }
 

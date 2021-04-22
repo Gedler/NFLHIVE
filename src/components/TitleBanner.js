@@ -3,17 +3,24 @@ import styled from "styled-components";
 
 const TitleHeader = styled.div`
         text-align: center;
-        color: red;
-        background-color: rgba(0, 0, 255, 70%);
-        padding: 10px;
-        `
+        color: teal;
+        background-color: rgba(255, 255, 255, 70%);
+        padding: 10px;`
+
+const Title = styled.h1`
+    font-family: fantasy ;
+    font-style: Copperplate ;
+    font-size: 75px;`
+
+
+    
 
 function TitleBanner() {
     
     console.log("Hello, World!")
         return ( 
             <TitleHeader>
-                <h1 style={{margin: 0}}>NFLHIVE</h1>
+                <Title style={{margin: 0}}>N F L H I V E</Title>
             </TitleHeader>
         )
 }
