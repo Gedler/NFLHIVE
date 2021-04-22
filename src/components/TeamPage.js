@@ -6,7 +6,8 @@ import styled from "styled-components";
 
 const MainContent = styled.div`
         display: inline-flex;
-        background-color: rgba(255, 67, 88);
+        background-color: teal;
+        font: copperplate;
         margin-bottom: 2%;
         margin-right: 2%;
         width: auto;

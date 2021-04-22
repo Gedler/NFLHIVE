@@ -7,7 +7,7 @@ import {Route, Switch} from "react-router-dom"
 import styled from "styled-components";
 
 const MainPage = styled.div`
-    background-color: rgba(0, 0, 255, 70%);
+    background-color: rgba(255, 255, 255, 70%);
     display: inline-flex;
     vertical-align: middle;
     width: 100%;`

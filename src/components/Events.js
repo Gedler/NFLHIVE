@@ -3,31 +3,44 @@ import EventForm from "./EventForm";
 import styled from 'styled-components'
 import ChatBox from './Chatbox'
 
+
+
+
+const SubmiitedHeader = styled.h1`
+    font-family: fantasy ;
+    font-style: Copperplate ;
+    font-size: ${prop => prop.size || "60px"};`
+
 const EventsBox = styled.div`
     display: inline-flex;
     `
 
 const EventsList = styled.p`
     margin: 2px;
-    color: blue;
+    color: teal;
+    font-weight: bold;
+    word-wrap: normal;
     `
 
 const EventElement = styled.div`
-        width: auto;
+        width: 400px;
+        word-wrap: normal;
         margin: 4px;
-        background: dodgerblue;
+        background: whitesmoke;
         border: 2px solid black;
         border-radius: 4px;
-        color: white;
+        color: teal;
         text-align: left;
         flex: 1;
         `
 
 const EventsListScroll = styled.div`
-    height: 500px;
+    height: 800px;
+    width: 400px;
     overflow: auto;`
 
 function Events({ selectedTeam }){
+    const [like, setLike] = useState(0)
     const [events, setEvents] = useState([])
     console.log(events)
 
@@ -54,6 +67,25 @@ function Events({ selectedTeam }){
         return event.teamsId === selectedTeam.id  // return the teams that match the same ID from the teamsAPI. TeamsAPI was imported as a prop.
     })
 
+    function handleNewLike(e) {
+        
+        setLike(like + 1)
+        const id = e.target.name
+
+        fetch(`http://localhost:4000/upcomingEvents/${id}`, {
+            method: "PATCH",
+            headers: {"content-type" : "application/json"}, 
+            body: JSON.stringify({
+                    like: like
+            })
+        })
+                .then(res => res.json())
+                .then(function(newlike){
+                    console.log("I've been clicked!")
+                })
+
+    } 
+
     const eventsList = filterEventsList.map( event => { 
          // return the teams that match the teamsAPI for ALL TEAMS.
         return (
@@ -64,7 +96,8 @@ function Events({ selectedTeam }){
                     <EventsList>Time: {event.time}</EventsList>
                     <EventsList>Description: {event.opponent}</EventsList>
                     <EventsList>Location: {event.location}</EventsList>
-                    <EventsList>Comments: {event.comments}</EventsList>
+                    <button name={event.id} onClick={handleNewLike}>  likes: {parseInt(event.like)}</button>
+        
                     <EventsList as="button" name={event.id} onClick={deleteEventPost}>Delete</EventsList>
                 </span>
             </EventElement>
@@ -91,13 +124,13 @@ function Events({ selectedTeam }){
                     selectedTeam={selectedTeam}
                     handleFormSubmit= {handleFormSubmit}
                 />
-                <h2>Fan Chat</h2>
+                <SubmiitedHeader font-size= "20px">Fan Chat</SubmiitedHeader>
                 <ChatBox
                         id = {selectedTeam.id}
                         />
             </div>
         <div style={{flexGrow: 1}}>
-            <h4 style={{textAlign:'center'}}>Upcoming Events</h4>
+            <SubmiitedHeader style={{textAlign:'center'}}>Upcoming Events</SubmiitedHeader>
             <EventsListScroll>
                 { eventsList }
             </EventsListScroll>
