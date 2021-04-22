@@ -5,13 +5,11 @@ const TitleHeader = styled.div`
         text-align: center;
         color: red;
         background-color: rgba(0, 0, 255, 70%);
-        margin: auto;
         padding: 10px;
         `
 
 function TitleBanner() {
     
-
     console.log("Hello, World!")
         return ( 
             <TitleHeader>

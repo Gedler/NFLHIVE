@@ -4,28 +4,35 @@ import styled from 'styled-components'
 import ChatBox from './Chatbox'
 
 const EventsBox = styled.div`
-    display: inline-flex;`
+    display: inline-flex;
+    `
 
 const EventsList = styled.p`
     margin: 2px;
-    color: blue;`
+    color: blue;
+    `
 
 const EventElement = styled.div`
+        width: auto;
         margin: 4px;
         background: dodgerblue;
         border: 2px solid black;
         border-radius: 4px;
         color: white;
         text-align: left;
+        flex: 1;
         `
 
+const EventsListScroll = styled.div`
+    height: 500px;
+    overflow: auto;`
 
 function Events({ selectedTeam }){
     const [events, setEvents] = useState([])
     console.log(events)
 
     function deleteEventPost(e) {
-        let filteredDelete = events.filter(event => {
+        const filteredDelete = events.filter(event => {
 
             return parseInt(e.target.name) !== event.id
         })
@@ -43,10 +50,12 @@ function Events({ selectedTeam }){
     }, [])
 
     const filterEventsList = events.filter(event=> { // Filtering the upComingEvents API
+
         return event.teamsId === selectedTeam.id  // return the teams that match the same ID from the teamsAPI. TeamsAPI was imported as a prop.
     })
 
-    const eventsList = filterEventsList.map( event => {  // return the teams that match the teamsAPI for ALL TEAMS.
+    const eventsList = filterEventsList.map( event => { 
+         // return the teams that match the teamsAPI for ALL TEAMS.
         return (
             <EventElement key={ event.id }>
                 <span> 
@@ -68,10 +77,10 @@ function Events({ selectedTeam }){
             headers: {"content-type" : "application/json"}, 
             body: JSON.stringify(newFormSubmit)
         })
-                .then(res => res.json())
-                .then(function(newFormUpload){
-                    setEvents([...events, newFormUpload])
-                })
+        .then(res => res.json())
+        .then(function(newFormUpload){
+            setEvents([...events, newFormUpload])
+        })
     }
 
 
@@ -79,7 +88,7 @@ function Events({ selectedTeam }){
         <EventsBox>
             <div>
                 <EventForm
-                    selectedTeam= {selectedTeam}
+                    selectedTeam={selectedTeam}
                     handleFormSubmit= {handleFormSubmit}
                 />
                 <h2>Fan Chat</h2>
@@ -87,9 +96,11 @@ function Events({ selectedTeam }){
                         id = {selectedTeam.id}
                         />
             </div>
-        <div>
+        <div style={{flexGrow: 1}}>
             <h4 style={{textAlign:'center'}}>Upcoming Events</h4>
-            { eventsList }
+            <EventsListScroll>
+                { eventsList }
+            </EventsListScroll>
         </div>
         </EventsBox>
     )

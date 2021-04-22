@@ -5,6 +5,10 @@ const Div = styled.div`
     margin-top: 6px;
     display: block;`
 
+const Form = styled.form`
+    display: block;
+    `
+
 function ChatBox({id}){
     
     const [userInput, setuserInput] = useState("")
@@ -33,29 +37,30 @@ function ChatBox({id}){
             headers: {"content-type": "application/json"},
             body: JSON.stringify(newChatSubmit)
         })
-                .then(res => res.json()) 
-                .then(function(newChat){
-                        setChat([...chat, newChat])
-                })
-                        setuserInput("")  
+        .then(res => res.json()) 
+        .then(function(newChat){
+        setChat([...chat, newChat])
+        })
+        setuserInput("")  
     }
 
-    let chatList = chat.map(function(comments){
-        return ( <div key= {comments.id}>
+    const chatList = chat.map(function(comments){
+        return ( 
+            <div key= {comments.id}>
                 <span>
                     <p>{comments.comment}</p>
                 </span>
-                </div>
+            </div>
         )
     })
     return ( 
-            <Div>
-                {chatList}
-                <form onSubmit= {sendNewChat}>
-                    <textarea placeholder="Start Chatting" value={userInput} onChange= {e=>setuserInput(e.target.value)}/>
-                    <input type="submit"/>
-                </form>
-            </Div>
+        <Div>
+            {chatList}
+            <form onSubmit= {sendNewChat}>
+                <Form as='textarea' placeholder="Start Chatting" value={userInput} onChange= {e=>setuserInput(e.target.value)}/>
+                <input as='input' type="submit"/>
+            </form>
+        </Div>
     )
 }
 

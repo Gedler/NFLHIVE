@@ -9,7 +9,8 @@ import styled from "styled-components";
 const MainPage = styled.div`
     background-color: rgba(0, 0, 255, 70%);
     display: inline-flex;
-    vertical-align: middle;`
+    vertical-align: middle;
+    width: 100%;`
 
 function App() {
   const [teams, setTeams] = useState([]) 
