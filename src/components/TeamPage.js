@@ -5,7 +5,7 @@ import {useParams} from "react-router-dom";
 import styled from "styled-components";
 
 const MainContent = styled.div`
-        display: inline-flex;
+        display: flex;
         background-color: teal;
         font: copperplate;
         margin-bottom: 2%;
@@ -41,7 +41,7 @@ function TeamPage() {
 
     return (
         <MainContent>
-            <TeamInfo selectedTeam={ team }/>
+            <TeamInfo style={{width: '20vw'}} selectedTeam={ team }/>
             <div style={{flexGrow: 1}}>
                 <Events selectedTeam={ team }/> 
             </div>
