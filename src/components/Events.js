@@ -10,6 +10,7 @@ import EventCard from './EventCard';
 const SubmitedHeader = styled.h1`
     font-size: ${prop => prop.size || "40px"};
     font-weight: bolder;
+    color: white;
     `
 
 const EventsBox = styled.div`
@@ -17,7 +18,7 @@ const EventsBox = styled.div`
     `
 
 const EventElement = styled.div`
-        width: auto;
+        width: 240px;
         word-wrap: normal;
         margin: 4px;
         background: whitesmoke;
@@ -92,7 +93,7 @@ function Events({ selectedTeam }){
                         id = {selectedTeam.id}
                         />
             </div>
-        <div style={{flexGrow: 1}}>
+        <div>
             <SubmitedHeader style={{textAlign:'center'}}>Upcoming Events</SubmitedHeader>
             <EventsListScroll>
                 { eventsList }

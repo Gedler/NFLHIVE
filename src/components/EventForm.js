@@ -4,7 +4,8 @@ import {Form} from 'semantic-ui-react'
 
 const FormText = styled.h1`
     font-size: 40px;
-    font-weight: bolder;`
+    font-weight: bolder;
+    color: white;`
 
 const Input = styled.input`
    display: block;

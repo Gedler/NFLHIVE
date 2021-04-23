@@ -2,14 +2,14 @@ import React from "react"
 import styled from "styled-components";
 
 const Title = styled.h1`
-    font-size: ${props => props.secondary || '40px'};
+    font-size: ${props => props.secondary || '30px'};
     font-weight: 100%;`
 
 
 const TeamWrapper = styled.div`
     margin: auto;
-    color: black;
-    width: 50%;
+    color: white;
+    width: 25vw;
     text-align: center;
     `
 

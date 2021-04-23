@@ -43,7 +43,7 @@ function EventCard({ event, onDelete }) {
             <EventsList>Time: {event.time}</EventsList>
             <EventsList>Description: {event.opponent}</EventsList>
             <EventsList>Location: {event.location}</EventsList>
-            <button name={event.id} onClick={handleNewLike}>  Likes: { like }</button>
+            <EventsList as="button" name={event.id} onClick={handleNewLike}>  Likes: { like }</EventsList>
             <EventsList as="button" name={event.id} onClick={deleteEventPost}>Delete</EventsList>
         </span>
     )

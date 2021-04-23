@@ -23,7 +23,11 @@ const ChatListDiv = styled.div`
     background-color: whitesmoke;
     `
    
-
+const StyleButton = styled(Button)`
+    float: right;
+    padding: none;
+    margin: none;
+    `
 
 function ChatBox({id}){
     
@@ -81,8 +85,8 @@ function ChatBox({id}){
 
             <Comment key= {comments.id}>
                 <Comment.Content>
-                    <Comment.Text>{comments.comment}</Comment.Text>
-                    <Button onClick={ deleteComment } name={ comments.id } labelPosition="right">X</Button>
+                    <Comment.Text style={{display: "inline"}}>{comments.comment}</Comment.Text>
+                    <StyleButton onClick={ deleteComment } style={{float: 'right', margin: '2px', padding: 0}} name={ comments.id }>X</StyleButton>
                 </Comment.Content>
             </Comment>
         )

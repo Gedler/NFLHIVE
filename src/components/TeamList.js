@@ -3,37 +3,37 @@ import {Link} from "react-router-dom"
 import styled from "styled-components";
 
 const SideBar = styled.div`
-        position: left;
-        background-color: white;
-        margin: 2%;
-        margin-top: 0;
-        width: 200px;
-        writing-mode: horizontal-tb;
-        padding: 10px;
-        height: fit-content;
-        color: white;`
+    position: left;
+    background-color: white;
+    margin: 2%;
+    margin-top: 0;
+    width: 200px;
+    writing-mode: horizontal-tb;
+    padding: 10px;
+    height: fit-content;
+    color: white;`
 
 
 const StyledLink = styled(Link)`
-        display: block;
-        background: teal;
-        box-sizing: border-box;
-        padding: 6px;
-        border: 2px solid black;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: 200ms ease;
-        color: white;
-        font-weight: bold;
-        text-decoration: none;
-        &:hover {
-        background: white;
-        color: green;
-        }
-        &:focus {
-        background: white;
-        color: red;
-        }`
+    display: block;
+    background: teal;
+    box-sizing: border-box;
+    padding: 6px;
+    border: 2px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 200ms ease;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    &:hover {
+    background: white;
+    color: green;
+    }
+    &:focus {
+    background: white;
+    color: red;
+    }`
     
 const SearchBar = styled.input`
     margin: auto;
