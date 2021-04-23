@@ -5,10 +5,11 @@ import TeamList from './components/TeamList';
 import TeamPage from './components/TeamPage';
 import {Route, Switch} from "react-router-dom"
 import styled from "styled-components";
+import HomePage from './components/HomePage';
 
 const MainPage = styled.div`
     background-color: rgba(255, 255, 255, 70%);
-    display: inline-flex;
+    display: flex;
     vertical-align: middle;
     width: 100%;`
 
@@ -33,6 +34,9 @@ function App() {
         <Switch>
           <Route exact path="/:id"> 
               <TeamPage/> 
+          </Route>
+          <Route>
+              <HomePage/>
           </Route>
         </Switch>
       </MainPage>
