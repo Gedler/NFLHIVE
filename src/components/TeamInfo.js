@@ -1,16 +1,15 @@
 import React from "react"
 import styled from "styled-components";
-import { Embed } from 'semantic-ui-react'
 
 const Title = styled.h1`
-    font-family: fantasy ;
-    font-style: Copperplate ;
-    font-size: 40px;
-    font-weight: bold;`
+    font-size: ${props => props.secondary || '40px'};
+    font-weight: 100%;`
+
 
 const TeamWrapper = styled.div`
+    margin: auto;
     color: black;
-    width: 37.7%;
+    width: 50%;
     text-align: center;
     `
 
@@ -25,9 +24,6 @@ const TeamElement = styled.div`
         text-align: left;
         `
 
-const Video = styled.iframe`
-    display: block;`
-
 
 function TeamInfo({ selectedTeam }){
 
@@ -40,12 +36,8 @@ function TeamInfo({ selectedTeam }){
                     <p>{gameScore.opponent}</p>
                     <p>Home Score: {gameScore.homeScore}</p>
                     <p>Away Score: {gameScore.awayScore}</p>
-                    <iframe title={index} src={gameScore.highlight.replace('watch?v=', "embed/")}/>
-                               
-                             
-                             
-
-                    {/* // src={gameScore.highlight.replace('watch?v=', "embed/")}></Embed> */}
+                    <a href={gameScore.highlight}>Highlight Video</a>
+                    {/* <iframe src={gameScore.highlight.replace('watch?v=', "embed/")} title={ index } /> */}
               
             </TeamElement>
         )
@@ -53,10 +45,12 @@ function TeamInfo({ selectedTeam }){
 
     return (
         <TeamWrapper>
-            <Title>{ name }</Title>
+            <div>
+                <Title>{ name }</Title>
+            </div>
             <img style={ {width: '100%', objectFit: 'contain'} } src={ logo } alt="team-logo"></img>
-            <Title>Year Founded: { yearFounded }</Title>
-            <Title>Last 5 Games</Title>
+            <Title secondary='20px'>Year Founded: { yearFounded }</Title>
+            <Title secondary='18px'>Last 5 Games</Title>
             <div>
                 { lastFiveGameInfo }
             </div>

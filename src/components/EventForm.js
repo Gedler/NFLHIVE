@@ -3,9 +3,8 @@ import styled from 'styled-components'
 import {Form} from 'semantic-ui-react'
 
 const FormText = styled.h1`
-    font-family: fantasy ;
-    font-style: Copperplate ;
-    font-size: 45px;`
+    font-size: 40px;
+    font-weight: bolder;`
 
 const Input = styled.input`
    display: block;
@@ -35,10 +34,16 @@ function EventForm({selectedTeam, handleFormSubmit}) {
          opponent: description,
          date: userdate,
          time: usertime,
-         comments: []
+         like: 0
       }
       
       handleFormSubmit(newFormSubmit)
+
+      setUserTitle('')
+      setLocationInput('')
+      setUserTime('')
+      setUserDate('')
+      setDescription('')
    }
     
 

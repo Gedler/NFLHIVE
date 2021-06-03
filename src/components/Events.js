@@ -2,28 +2,22 @@ import React, { useState, useEffect } from 'react'
 import EventForm from "./EventForm";
 import styled from 'styled-components'
 import ChatBox from './Chatbox'
+import EventCard from './EventCard';
 
 
 
 
-const SubmiitedHeader = styled.h1`
-    font-family: fantasy ;
-    font-style: Copperplate ;
-    font-size: ${prop => prop.size || "60px"};`
-
-const EventsBox = styled.div`
-    display: inline-flex;
+const SubmitedHeader = styled.h1`
+    font-size: ${prop => prop.size || "40px"};
+    font-weight: bolder;
     `
 
-const EventsList = styled.p`
-    margin: 2px;
-    color: teal;
-    font-weight: bold;
-    word-wrap: normal;
+const EventsBox = styled.div`
+    display: flex;
     `
 
 const EventElement = styled.div`
-        width: 400px;
+        width: auto;
         word-wrap: normal;
         margin: 4px;
         background: whitesmoke;
@@ -36,25 +30,11 @@ const EventElement = styled.div`
 
 const EventsListScroll = styled.div`
     height: 800px;
-    width: 400px;
     overflow: auto;`
 
 function Events({ selectedTeam }){
-    const [like, setLike] = useState(0)
     const [events, setEvents] = useState([])
     console.log(events)
-
-    function deleteEventPost(e) {
-        const filteredDelete = events.filter(event => {
-
-            return parseInt(e.target.name) !== event.id
-        })
-
-        fetch(`http://localhost:4000/upcomingEvents/${e.target.name}`, {
-            method: "delete", })
-
-        setEvents(filteredDelete)
-    }
 
     useEffect( () => {
         fetch(`http://localhost:4000/upcomingEvents`)
@@ -67,38 +47,21 @@ function Events({ selectedTeam }){
         return event.teamsId === selectedTeam.id  // return the teams that match the same ID from the teamsAPI. TeamsAPI was imported as a prop.
     })
 
-    function handleNewLike(e) {
-        
-        setLike(like + 1)
-        const id = e.target.name
+    function onDelete(deleteId){
+        const filteredDelete = events.filter(event => {
 
-        fetch(`http://localhost:4000/upcomingEvents/${id}`, {
-            method: "PATCH",
-            headers: {"content-type" : "application/json"}, 
-            body: JSON.stringify({
-                    like: like
-            })
+            return parseInt(deleteId) !== event.id
         })
-                .then(res => res.json())
-                .then(function(newlike){
-                    console.log("I've been clicked!")
-                })
 
-    } 
+        setEvents(filteredDelete)
+    }
 
     const eventsList = filterEventsList.map( event => { 
          // return the teams that match the teamsAPI for ALL TEAMS.
         return (
             <EventElement key={ event.id }>
                 <span> 
-                    <EventsList>Title: {event.title}</EventsList>
-                    <EventsList>Date: {event.date}</EventsList>
-                    <EventsList>Time: {event.time}</EventsList>
-                    <EventsList>Description: {event.opponent}</EventsList>
-                    <EventsList>Location: {event.location}</EventsList>
-                    <button name={event.id} onClick={handleNewLike}>  likes: {parseInt(event.like)}</button>
-        
-                    <EventsList as="button" name={event.id} onClick={deleteEventPost}>Delete</EventsList>
+                    <EventCard event={ event } onDelete={ onDelete }></EventCard>
                 </span>
             </EventElement>
         )
@@ -124,13 +87,13 @@ function Events({ selectedTeam }){
                     selectedTeam={selectedTeam}
                     handleFormSubmit= {handleFormSubmit}
                 />
-                <SubmiitedHeader font-size= "20px">Fan Chat</SubmiitedHeader>
+                <SubmitedHeader font-size= "20px">Fan Chat</SubmitedHeader>
                 <ChatBox
                         id = {selectedTeam.id}
                         />
             </div>
         <div style={{flexGrow: 1}}>
-            <SubmiitedHeader style={{textAlign:'center'}}>Upcoming Events</SubmiitedHeader>
+            <SubmitedHeader style={{textAlign:'center'}}>Upcoming Events</SubmitedHeader>
             <EventsListScroll>
                 { eventsList }
             </EventsListScroll>
